@@ -21,3 +21,7 @@ THEN I am again presented with current and future conditions for that city
 - Was able to fetch `weather api` and use its `data` on the page
 Searching for a city displays `weather data` for that city
 - The data for `wind, temperature, conditions, humidity, and date` can be shown
+
+
+![image](https://user-images.githubusercontent.com/104086686/194761591-18add7b6-a396-4925-9845-ed579c707d00.png)
+
