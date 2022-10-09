@@ -23,5 +23,5 @@ Searching for a city displays `weather data` for that city
 - The data for `wind, temperature, conditions, humidity, and date` can be shown
 
 
-![image](https://user-images.githubusercontent.com/104086686/194761591-18add7b6-a396-4925-9845-ed579c707d00.png)
 
+![weather-api](https://user-images.githubusercontent.com/104086686/194761673-2a5c5fca-177f-4600-b783-f0b875066206.png)
