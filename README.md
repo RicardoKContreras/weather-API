@@ -16,3 +16,8 @@ WHEN I view future weather conditions for that city
 THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
+
+## Notes
+- Was able to fetch `weather api` and use its `data` on the page
+Searching for a city displays `weather data` for that city
+- The data for `wind, temperature, conditions, humidity, and date` can be shown
