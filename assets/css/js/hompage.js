@@ -2,6 +2,7 @@ var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
+var historyEl = document.querySelector("#city-history");
 
 //executed upon a form submission browser event.
 var formSubmitHandler = function(event) {
@@ -15,6 +16,13 @@ if (cityname) {
 } else {
   alert("Please enter a city");
 }
+//to see if put fires
+  // console.log(event);
+};
+var historyHandler = function(event) {
+  event.preventDefault();
+  // get value from input element
+  return displayWeather();
 //to see if put fires
   // console.log(event);
 };
@@ -37,6 +45,9 @@ for (var i = 35; i < weather.list.length; i++) {
   var wind = "wind: " + weather.list[i].wind.speed + " MPH";
   var conditions = weather.list[i].weather[0].description;
   var date = weather.list[i].dt_txt;
+  // var weatherIcon = document.createElement("img");
+  //  var iconUrl =  "http://openweathermap.org/img/wn/" + weather.list[i].weather[0].icon + "@2x.png"
+  //  var image = weatherIcon.setAttribute("src", iconUrl);
   var allWeather = {temperature, humidity, wind, conditions, date};
   console.log(date);
   // var weatherName = weather.list[i].owner.login + "/" + repos[i].name;
@@ -44,7 +55,9 @@ for (var i = 35; i < weather.list.length; i++) {
   //create a container for each repo
   var repoEl = document.createElement("div");
   repoEl.classList = "list-item flex-row justify-space-between align-center";
-
+  
+  // var iconUrl =  "http://openweathermap.org/img/wn/" + dailyWeatherArray[i].weather[0].icon + "@2x.png"
+  
   // create a span element to hold repository name
   var titleEl = document.createElement("span");
   titleEl.textContent = allWeather.temperature + " "+ allWeather.humidity + " " + allWeather.conditions + " " + allWeather.wind + " " +  allWeather.date;
@@ -88,12 +101,22 @@ var getWeatherInfo = function(lat, lon) {
 
   fetch(apiUrl).then(function(response) {
     response.json().then(function(data) {
-     
+      // localStorage.setItem(response, data);
       displayWeather(data);
       // console.log(data);
       // console.log(apiUrl);
+      for (var i = 0; i < data.length; i++) {
+        var cityEl = document.createElement("span");
+
+        localStorage.getItem(response,data);
+        repoSearchTerm.appendChild(cityEl);
+        cityEl.classList = "list-item flex-row justify-space-between align-center";
+      }
     });
   });
 }
+
+
+historyEl.addEventListener("submit", formSubmitHandler);
 
 userFormEl.addEventListener("submit", formSubmitHandler);
