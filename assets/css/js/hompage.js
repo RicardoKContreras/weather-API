@@ -1,5 +1,7 @@
 var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#username");
+var repoContainerEl = document.querySelector("#repos-container");
+var repoSearchTerm = document.querySelector("#repo-search-term");
 
 //executed upon a form submission browser event.
 var formSubmitHandler = function(event) {
@@ -17,6 +19,48 @@ if (cityname) {
   // console.log(event);
 };
 
+
+var displayCity = function(searchCity) {
+  // clear old content
+repoContainerEl.textContent = "";
+repoSearchTerm.textContent = searchCity;
+  
+  
+};
+//display the weather
+var displayWeather = function(weather) {
+  // loop over list array
+for (var i = 35; i < weather.list.length; i++) {
+  // format weather name
+  var temperature = weather.list[i].main.temp + " degrees";
+  var humidity = "humidity: " + weather.list[i].main.humidity;
+  var wind = "wind: " + weather.list[i].wind.speed + " MPH";
+  var conditions = weather.list[i].weather[0].description;
+  var date = weather.list[i].dt_txt;
+  var allWeather = {temperature, humidity, wind, conditions, date};
+  console.log(date);
+  // var weatherName = weather.list[i].owner.login + "/" + repos[i].name;
+
+  //create a container for each repo
+  var repoEl = document.createElement("div");
+  repoEl.classList = "list-item flex-row justify-space-between align-center";
+
+  // create a span element to hold repository name
+  var titleEl = document.createElement("span");
+  titleEl.textContent = allWeather.temperature + " "+ allWeather.humidity + " " + allWeather.conditions + " " + allWeather.wind + " " +  allWeather.date;
+
+  // append to container
+  repoEl.appendChild(titleEl);
+
+  // append container to the dom
+  repoContainerEl.appendChild(repoEl);
+}
+
+  console.log(weather);
+  
+};
+
+//API used to get lon and lat
 var getGeoLocation = function(city) {
   // format the github api url
      var apiKey = "be12cc98c8a80e10300f59755d0a1bbc";
@@ -25,24 +69,29 @@ var getGeoLocation = function(city) {
   // make a request to the url
   fetch(geoLocation).then(function(response) {
     response.json().then(function(data) {
-      console.log(data);
+      // console.log(data);
       var cityLat = data[0].lat;
       var cityLon = data[0].lon;
-      console.log(cityLat);
-      console.log(cityLon);
+      // console.log(cityLat);
+      // console.log(cityLon);
       getWeatherInfo(cityLat, cityLon);
+      
+      displayCity(city);
     });
   });
 };
 
+//API for getting weather info based off what city is searched
 var getWeatherInfo = function(lat, lon) {
   var apiKey = "be12cc98c8a80e10300f59755d0a1bbc";
   var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
-console.log(apiUrl);
+
   fetch(apiUrl).then(function(response) {
     response.json().then(function(data) {
-      console.log(data);
-      console.log(apiUrl);
+     
+      displayWeather(data);
+      // console.log(data);
+      // console.log(apiUrl);
     });
   });
 }
