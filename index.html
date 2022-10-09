@@ -13,26 +13,27 @@
 
 <body class="flex-column min-100-vh">
   <header class="hero">
-    <h1 class="app-title"><i class="fab fa-github"></i>Weather-API</h1>
-    <p>See the weather for the next five days with this lovely API fetch!
+    <h1 class="app-title"><i class="fab fa-github"></i>Check-Weather</h1>
+    <p>Search for a specific city to learn about the 5-day forecast 
     </p>
   </header>
 
 
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4"><div class="card">
-      <h3 class="card-header text-uppercase">Search for a City:</h3>
-      <form id="city-form" class="card-body">
-        <label class="form-label" for="cityname">City Name</label>
-        <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
+      <h3 class="card-header text-uppercase">Search by City</h3>
+      <form id="user-form" class="card-body">
+        <label class="form-label" for="username">City Name</label>
+        <input name="username" id="username" type="text" autofocus="true" class="form-input" />
         <button type="submit" class="btn">Search</button>
       </form>
     </div>
   </div>
 
     <div class="col-12 col-md-8">
-      <h2 class="subtitle"><span id="repo-search-term"></span></h2>
+      <h2 class="subtitle">Showing Weather for: <span id="repo-search-term"></span></h2>
       <div id="repos-container" class="list-group"></div>
+
     </div>
   </main>
 <script src="./assets/css/js/hompage.js"></script>
